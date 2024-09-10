@@ -1,5 +1,6 @@
     // Define the API URL
-    const couponApiUrl = 'http://192.168.100.114:5050/api/v1/coupons/coupons';
+    // const couponApiUrl = 'http://192.168.100.114:5050/api/v1/coupons/coupons';
+    const couponApiUrl = 'https://voucherssavvy.vercel.app/api/v1/coupons/coupons';
          
     // Function to fetch all coupons
     function getAllCoupons() {

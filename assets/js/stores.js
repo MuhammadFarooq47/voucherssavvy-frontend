@@ -1,5 +1,5 @@
 // Define the API URL
-const apiUrl = 'http://192.168.100.114:5050/api/v1/stores/get-all-stores';
+const apiUrl = 'https://voucherssavvy.vercel.app/api/v1/stores/get-all-stores';
 
 // Function to fetch all stores
 function getAllStores() {
