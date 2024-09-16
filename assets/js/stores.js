@@ -1,6 +1,5 @@
-// Define the API URL
 const apiUrl = 'https://voucherssavvy.vercel.app/api/v1/stores/get-all-stores';
-
+         
 // Function to fetch all stores
 function getAllStores() {
   fetch(apiUrl)
@@ -15,7 +14,6 @@ function getAllStores() {
     .then(data => {
       // Handle the data received
       populateStores(data);
-      initializeCarousel(); // Initialize carousel after populating items
     })
     .catch(error => {
       // Handle any errors
@@ -48,7 +46,8 @@ function populateStores(stores) {
           ${topBadge} <!-- Conditionally add badge for Top stores -->
           <h6 style="text-align:center;"><b>${store.storeName}</b></h6>
           <div style="text-align:center; margin-top:5px;">
-            <a href="${store.trackingLink}" class="btn btn-dark" target="_blank">View Store</a>
+              <a href="./coupons-by-storename.html?storeName=${encodeURIComponent(store.storeName)}" class="btn btn-dark">View Store</a>
+      </div>
           </div>
           <br>
         </div>
@@ -58,64 +57,47 @@ function populateStores(stores) {
     // Append the store HTML to the container
     storeContainer.innerHTML += storeHTML;
   });
+
+  // Reinitialize the carousel after adding items
+  initializeCarousel();
 }
 
-// Function to initialize Owl Carousel
+// Function to initialize or reinitialize Owl Carousel
 function initializeCarousel() {
-    $("#store-carousel").owlCarousel({
-        loop: true,
-        items: 4,
-        autoplay: true,
-        margin: 20,
-        dots: false,
-        nav: true,
-        autoPlay: 4000,
-        navText: ["<div class='lnr lnr-arrow-left'></div>", "<div class='lnr lnr-arrow-right'></div>"],
-        responsiveClass: true,
-        responsive: {
-           0: {
-              items: 1
-           },
-           480: {
-              items: 2
-           },
-           600: {
-              items: 3
-           },
-           1000: {
-              items: 4
-           }
-        }
-     });
-     //Popular Deal Carousel End
+  // Destroy the carousel if it was already initialized
+  const owl = $('#store-carousel');
+  if (owl.hasClass('owl-loaded')) {
+    owl.trigger('destroy.owl.carousel');
+    owl.removeClass('owl-loaded');
+    owl.find('.owl-stage-outer').children().unwrap();
+  }
 
-
-     //Carousel Deal Carousel End
-     $("#store_large").owlCarousel({
-        loop: true,
-        items: 5,
-        autoplay: true,
-        margin: 20,
-        dots: false,
-        nav: true,
-        autoPlay: 1000,
-        navText: ["<div class='lnr lnr-arrow-left'></div>", "<div class='lnr lnr-arrow-right'></div>"],
-        responsiveClass: true,
-        responsive: {
-           0: {
-              items: 1
-           },
-           480: {
-              items: 2
-           },
-           600: {
-              items: 3
-           },
-           1000: {
-              items: 5
-           }
-        }
-     });
+  // Initialize the Owl Carousel
+  $("#store-carousel").owlCarousel({
+         loop: true,
+         items: 4,
+         autoplay: true,
+         margin: 20,
+         dots: false,
+         nav: true,
+         autoPlay: 4000,
+         navText: ["<div class='lnr lnr-arrow-left'></div>", "<div class='lnr lnr-arrow-right'></div>"],
+         responsiveClass: true,
+         responsive: {
+            0: {
+               items: 1
+            },
+            480: {
+               items: 2
+            },
+            600: {
+               items: 3
+            },
+            1000: {
+               items: 4
+            }
+         }
+      });
 }
 
 // Call the function to fetch the stores data
