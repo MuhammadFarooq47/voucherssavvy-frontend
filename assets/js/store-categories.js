@@ -1,4 +1,4 @@
-function truncateDescription(description, maxLength = 150) {
+function truncateDescription(description, maxLength = 100) {
     if (description.length > maxLength) {
       return description.substring(0, maxLength) + '...';
     }
