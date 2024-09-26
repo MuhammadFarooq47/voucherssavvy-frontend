@@ -1,5 +1,5 @@
- // Function to truncate description to 67 characters and add ellipsis if needed
- function truncateDescription(description, maxLength = 67) {
+  // Function to truncate description to 67 characters and add ellipsis if needed
+  function truncateDescription(description, maxLength = 67) {
     if (description.length > maxLength) {
       return description.substring(0, maxLength) + '...';
     }
@@ -16,34 +16,36 @@
       // Select the container where the cards will be inserted
       const container = document.getElementById('categories-container');
 
-      // Iterate over each category and create the card
+      // Iterate over each category and create the card only if the status is "enable"
       categories.forEach(category => {
-        // Create a new card div
-        const card = document.createElement('div');
-        card.className = 'col-md-3 col-sm-6 col-xs-12';
+        if (category.status.toLowerCase() === 'enable') {
+          // Create a new card div
+          const card = document.createElement('div');
+          card.className = 'col-md-3 col-sm-6 col-xs-12';
 
-        // Card inner HTML
-        card.innerHTML = `
-          <!-- Deal Single Item Start -->
-          <div class="item deal-item">
-            <div class="deal-thumb">
-              <img src="${category.image}" alt="${category.categoryName}" class="img-responsive" />
-              <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          // Card inner HTML
+          card.innerHTML = `
+            <!-- Deal Single Item Start -->
+            <div class="item deal-item">
+              <div class="deal-thumb">
+                <img src="${category.image}" alt="${category.categoryName}" class="img-responsive" />
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <div class="deal-content">
+                <h6 style="text-align:center">
+                  <a href="#" class="category-link" data-id="${category._id}">${category.categoryName}</a>
+                </h6>
+                <p>${truncateDescription(category.description)}</p>
               </div>
             </div>
-            <div class="deal-content">
-              <h6 style="text-align:center">
-                <a href="#" class="category-link" data-id="${category._id}">${category.categoryName}</a>
-              </h6>
-              <p>${truncateDescription(category.description)}</p>
-            </div>
-          </div>
-          <!-- Deal Single Item End -->
-        `;
+            <!-- Deal Single Item End -->
+          `;
 
-        // Append the card to the container
-        container.appendChild(card);
+          // Append the card to the container
+          container.appendChild(card);
+        }
       });
 
       // Add click event listeners to each category link
