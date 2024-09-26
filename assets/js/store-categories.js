@@ -57,7 +57,7 @@ function truncateDescription(description, maxLength = 100) {
        }
      } catch (error) {
        console.error('Error fetching parent category:', error);
-       document.getElementById('stores-container').innerHTML = `<p>Error loading stores: ${error.message}</p>`;
+       document.getElementById('stores-container').innerHTML = `<p>No stores available for this category or Server error.</p>`;
      }
    }
 
