@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Detail Page</title>
+    
+    <!-- icons & favicons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/logo/fav.png">
+    <!-- GOOGLE FONT -->
+    <link href="http://fonts.googleapis.com/css?family=Cabin:400,700%7CUbuntu:300,400,700" rel="stylesheet" />
+
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css" media="all" />
+
+     <!-- FONT AWESOME CSS -->
+     <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css" media="all" />
+
+     <!-- linearicons -->
+     <link rel="stylesheet" href="assets/vendor/linearicons/webfont/style.css" media="all" />
+ 
+    <!-- CUSTOM  CSS  -->
+    <link id="cbx-style" rel="stylesheet" href="assets/css/style-default.css" media="all" />
+    <link rel="stylesheet" href="assets/css/custom_style.css" media="all" />
+
+    <!-- MODERNIZER  -->
+    <script src="assets/vendor/modernizr/modernizr.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .blog-cover img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            margin-top: 50px;
+        }
+
+        .blog-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .blog-meta {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .blog-content {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .blog-footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+        }
+
+        .blog-footer a {
+            text-decoration: none;
+            color: #007bff;
+            transition: color 0.3s;
+        }
+
+        .blog-footer a:hover {
+            color: #0056b3;
+        }
+
+        .btn-back {
+            background-color: #007bff;
+            color: #fff;
+            transition: background-color 0.3s;
+        }
+
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 767px) {
+            .blog-cover img {
+                height: auto;
+                max-height: none;
+                margin-bottom: 0px;
+            }
+
+            .blog-title {
+                font-size: 20px;
+                /* text-align: center; */
+            }
+
+            .blog-content {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+     <!-- Header Part Start -->
+     <header class="cbx-header">
+        <!-- Header Top Part Start -->
+        <div class="cbx-header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-sm-4 col-xs-7">
+                        <!-- Header Top Brand Part Start -->
+                        <div class="cbx-brand">
+                            <a href="index.html">
+                                <!-- img-responsive -->
+                                <img src="assets/img/logo/logo-dark.png" alt="logo of Alphacouponslab" class=""
+                                    style="width:160% !important;" />
+                            </a>
+                        </div>
+                        <!-- Header Top Brand Part End -->
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-5 pull-right">
+                        <div class="cbx-header-top-search-btn">
+                            <!-- Header Top Search Part Start -->
+                            <div class="cbx-search">
+                                <a href="https://www.facebook.com/Alpha-Coupons-Lab-102384005457426"
+                                    class="btn btn-default btn-lg btn-brand"><i class="fa fa-facebook"></i></a>
+                                <a href="https://www.instagram.com/alphacouponslab/"
+                                    class="btn btn-default btn-lg btn-brand"><i class="fa fa-instagram"></i></a>
+                                <a href="https://www.pinterest.com/AlphaCouponsLab/"
+                                    class="btn btn-default btn-lg btn-brand"><i class="fa fa-pinterest"></i></a>
+                            </div>
+                            <!-- Header Top Search Part End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="searchBar" class="collapse">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="searchbar-wrapper">
+                            <form class="navbar-form" role="search">
+                                <div class="input-group">
+                                    <input autocomplete="off" id="search12" type="text" class="form-control"
+                                        placeholder="Search" name="q">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit"><i id="search-icon"
+                                                class="fa fa-user"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                            <br>
+                            <div class="lists-group">
+                                <!-- Here autocomplete list will be display -->
+                                <div class="list" id="show-list">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header Top Part End -->
+        <!-- Header Bottom Part Start -->
+        <div class="cbx-header-bottom">
+            <div class="container">
+                <div class="row">
+                    <nav class="navbar navbar-default">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                Menu
+                                <!--<span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>-->
+                            </button>
+                            <div class="hidden-lg hidden-md hidden-sm pull-right mobile-signin-btn">
+                                <a id="showSearchBar"
+                                    class="btn btn-default btn-lg btn-brand search_btn_b showSearchBar" role="button"
+                                    data-toggle="collapse" href="#searchBar"><i id="fa-icon"
+                                        class="fa fa-search"></i></a>
+                            </div>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="stores.html">Stores</a></li>
+                                <li><a href="categories.html">Categories</a></li>
+                                <li><a href="blogs.html">Blogs</a></li>
+                                <li><a href="faq.html">FAQ</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right hidden-xs">
+                                <li><a id="showSearchBar" class="btn btn-default btn-lg btn-brand showSearchBar"
+                                        role="button" data-toggle="collapse" href="#searchBar"><i id="fa-icon"
+                                            class="fa fa-search"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Header Bottom Part End -->
+    </header>
+    <script>
+        var el = document.getElementById("search12");
+        el.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                alert("Please Click on Store Name");
+                event.preventDefault();
+            }
+        });
+
+    </script>
+    <!-- Header Part End -->
+
+<div class="container mt-5 mb-5">
+    <!-- Blog Cover Image -->
+    <div class="blog-cover">
+        <img id="blogCoverImage" src="" alt="Blog Cover Image">
+    </div>
+
+    <!-- Blog Title -->
+    <h1 id="blogTitle" class="blog-title">Blog Title</h1>
+
+    <!-- Blog Meta Information -->
+    <p id="blogMeta" class="blog-meta"><i class="fas fa-calendar-alt"></i> Published on </p>
+
+    <!-- Blog Description -->
+    <p id="blogContent" class="blog-content">
+        Blog content goes here...
+    </p>
+
+    <!-- Blog Footer with Meta Description -->
+    <!-- <div class="blog-footer">
+        <div id="metaDescription" class="meta-description">
+            <strong>Meta Description:</strong> 
+        </div>
+        <a href="#" class="btn btn-back">Back to Blogs</a>
+    </div> -->
+</div>
+
+  <!-- Footer Part Start -->
+  <footer class="cbx-footer">
+    <!-- Footer Top Part Start -->
+    <div class="cbx-footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <!-- Footer widget about Part Start -->
+                    <div class="widget widget-about">
+                        <div class="widget-brand">
+                            <a href="#"><!--img-responsive-->
+                                <img src="assets/img/logo/logo-light1.png" alt="AlphaCouponsLab" class=""
+                                    style="width:80% !important;" />
+                            </a>
+                        </div>
+                        <p> AlphaCouponsLab.com: Always rewarded with everyday purchasing. Free shipments, free
+                            returns, and more from over 1,000 top merchants! Get vouchers, voucher codes, discounts
+                            online. </p>
+                        <div class="widget-social">
+                            <ul>
+                                <li>
+                                    <a href="https://www.facebook.com/Alpha-Coupons-Lab-102384005457426">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.instagram.com/alphacouponslab/">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.pinterest.com/AlphaCouponsLab/">
+                                        <i class="fa fa-pinterest"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Footer widget about Part End -->
+                </div>
+
+                <div class="col-md-2 col-sm-6 col-xs-12">
+                    <!-- Footer widget listings Part Start -->
+                    <div class="widget widget-listings">
+                        <h2>Quick Link</h2>
+                        <ul>
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>
+
+                            <li>
+                                <a href="about.html">About</a>
+                            </li>
+
+                            <li>
+                                <a href="stores.html">Stores</a>
+                            </li>
+
+                            <li>
+                                <a href="categories.html">Categories</a>
+                            </li>
+
+                            <li>
+                                <a href="blogs.html">Blogs</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Footer widget listings Part End -->
+                </div>
+
+                <div class="col-md-2 col-sm-6 col-xs-12">
+                    <!-- Footer widget widget-listings Part Start -->
+                    <div class="widget widget-listings">
+                        <h2>Usefull Links</h2>
+                        <ul>
+                            <li>
+                                <a href="Terms.html">Terms and Conditions</a>
+                            </li>
+
+                            <li>
+                                <a href="Policy.html">Privacy Policy</a>
+                            </li>
+
+                            <li>
+                                <a href="how-work.html">How It Works</a>
+                            </li>
+
+                            <li>
+                                <a href="faq.html">FAQ's</a>
+                            </li>
+
+                            <li>
+                                <a href="contact.html">Conatct</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Footer widget widget-listings Part End -->
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <!-- Footer widget newsletter Part Start -->
+                    <div class="widget widget-newsletter">
+                        <div class="widget-newsletter-area">
+                            <form id="fupForm" name="form1" method="post" class="navbar-form">
+                                <div class="input-group">
+                                    <input type="text" id="email" required class="form-control"
+                                        placeholder="Your Email" name="email">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="button" name="butsave" id="butsave"><i
+                                                class="fa fa-send-o"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                            <p style="color:#C0F8B2;text-align:Center" id="success">If you want to connect with us
+                                please subcribe by your email.</p>
+
+                        </div>
+                    </div>
+                    <!-- Footer widget newsletter Part End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Top Part End -->
+
+    <!-- Footer Bottom Part Start -->
+    <div class="cbx-footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="copyright text-center">
+                        <p>© 2021 Copyright AlphaCouponsLab. All Rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Bottom Part End -->
+
+</footer>
+<!-- Footer Part End -->
+
+ <!-- jquery -->
+ <script src="assets/vendor/jquery/jquery-1.11.3.min.js"></script>
+
+ <!-- BOOTSTRAP JS -->
+ <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+ <!-- if load google maps then load this api
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyChihC--Jb_QURoXd2MugyC53cDQjrV2MY"></script> -->
+
+ <!-- load if our contact form or email subscribe options is used -->
+ <script src="assets/vendor/validation/jquery.validate.js"></script>
+
+     <!-- Bootstrap Slider -->
+     
+     <script src="assets/vendor/bootstrap-slider/bootstrap-slider.min.js"></script>
+
+     <!-- THEME SCRIPT  -->
+     <script src="assets/js/theme.js"></script>
+ 
+     <!-- CUSTOM SCRIPT  -->
+     <script src="assets/js/custom.js"></script>
+
+<!-- Script to Fetch and Display Blog Data -->
+<script>
+  // Function to get query parameter by name
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  // Extract the blog ID from the URL
+  const blogId = getQueryParam('id');
+
+  // Check if the blog ID is present
+  if (blogId) {
+    // Fetch the blog data from the API using the blog ID
+    fetch(`https://voucherssavvy.vercel.app/api/v1/blogs/get-blog/${blogId}`)
+      .then(response => response.json())
+      .then(data => {
+        // Check if the data is returned correctly
+        if (data) {
+          // Populate the blog detail page with the fetched data
+          document.getElementById('blogCoverImage').src = data.blogCoverImage;
+          document.getElementById('blogCoverImage').alt = data.imageAltDescription;
+          document.getElementById('blogTitle').innerText = data.blogTitle;
+          document.getElementById('blogMeta').innerHTML = `<i class="fas fa-calendar-alt"></i> Published on ${new Date(data.blogUploadDate).toLocaleDateString()}`;
+          document.getElementById('blogContent').innerText = data.description;
+          document.getElementById('metaDescription').innerHTML = `<strong>Meta Description:</strong> ${data.metaDescription}`;
+        } else {
+          alert('Blog not found');
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching blog data:', error);
+        // alert('Failed to load blog details');
+      });
+  } else {
+    alert('Invalid blog ID');
+  }
+</script>
+
+</body>
+</html>
