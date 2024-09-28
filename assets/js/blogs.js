@@ -10,6 +10,18 @@
         // Clear any existing content
         blogList.innerHTML = '';
 
+        // Function to truncate text to a specified length
+function truncateText(text, maxLength) {
+    // Check if the text length is greater than the maximum allowed length
+    if (text.length > maxLength) {
+      // Truncate and append ellipsis
+      return text.substring(0, maxLength) + '...';
+    }
+    // Return the original text if it's within the limit
+    return text;
+  }
+  
+
         // Iterate over each blog and render the HTML
         blogs.forEach(blog => {
             const blogHTML = `
@@ -23,7 +35,7 @@
                         </div>
                         <div class="blog-content">
                             <h4>
-                                <a href="blog-detail.html?id=${encodeURIComponent(blog._id)}">${blog.blogTitle}</a>
+                                <a href="blog-detail.html?id=${encodeURIComponent(blog._id)}">  ${truncateText(blog.blogTitle, 26)} </a>
                             </h4>
                             <div class="blog-tags">
                                 <ul>
